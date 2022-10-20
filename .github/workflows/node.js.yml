@@ -16,5 +16,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: nvm use v16.18.0
     - run: npm ci
