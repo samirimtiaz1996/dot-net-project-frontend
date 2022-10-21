@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from '../../../material/material.module';
-import { AcceptFormatPipe } from '../../pipes/accept-format.pipe';
 
 import { FileUploaderComponent } from './file-uploader.component';
 
@@ -10,10 +8,9 @@ describe('FileUploaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FileUploaderComponent, AcceptFormatPipe],
-      imports: [MaterialModule]
+      declarations: [ FileUploaderComponent ]
     })
-      .compileComponents();
+    .compileComponents();
 
     fixture = TestBed.createComponent(FileUploaderComponent);
     component = fixture.componentInstance;

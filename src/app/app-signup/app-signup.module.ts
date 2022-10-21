@@ -12,43 +12,35 @@ import { FileUploaderModule } from '../shared/modules/file-uploader/file-uploade
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProfessionalInfoFormComponent } from './professional-info-form/professional-info-form.component';
-import { BankInfoFormComponent } from './bank-info-form/bank-info-form.component';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-const routes: Route[] = [
-  { path: '', component: SignupStepperContainerComponent },
-];
-
+const routes: Route[] =[{path : "",component : SignupStepperContainerComponent}];
 export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/i18n/app-signup/", suffix: ".json" },
-    //{ prefix: "./assets/i18n/common/", suffix: ".json" },
-
-  ]);
+  return new TranslateHttpLoader(http,"./assets/i18n/app-signup/",".json");
 }
-
 @NgModule({
-  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent, BankInfoFormComponent],
+  declarations: [
+    SignupStepperContainerComponent,
+    GeneralInfoFormComponent
+  ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     PhotoUploaderModule,
     FileUploaderModule,
     TranslateModule.forChild({
-      defaultLanguage: 'en',
+      defaultLanguage : "en",
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      isolate: true
-    }),
-  ],
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpClient]
+    },
+    
+
+    })
+  ]
 })
 export class AppSignupModule { }

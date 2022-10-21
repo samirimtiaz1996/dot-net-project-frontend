@@ -1,10 +1,4 @@
 {
-    "SIGNUP": "Sign Up",
-    "PROFILE_PICTURE" : "Profile Picture",
-     "BUSINESS_PHONE_NUMBER" : "Business phone number",
-     "BUSINESS_EMAIL" : "Business email",
-     "BANK" : "Bank",
-     "MFS" : "Mobile financial service"
-
+    "SIGNUP": "Sign Up"
 
 }

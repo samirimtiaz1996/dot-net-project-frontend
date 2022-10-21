@@ -7,43 +7,28 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
 
 
 
-const routes: Route[] = [
-  { path: "", component: LoginDefaultComponent }
-
-];
+const routes: Route[] =[{path : "",component : LoginDefaultComponent}];
 export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/i18n/common/", suffix: ".json" },
-    { prefix: "./assets/i18n/app-login/", suffix: ".json" },
-
-  ]);
+  return new TranslateHttpLoader(http,"./assets/i18n/common/",".json");
 }
 @NgModule({
-  declarations: [LoginDefaultComponent, LoginFormComponent],
+  declarations: [LoginDefaultComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FlexLayoutModule,
     MaterialModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SharedUtilityModule,
     RouterModule.forChild(routes),
     TranslateModule.forChild({
-      defaultLanguage: "en",
+      defaultLanguage : "en",
       loader: {
         provide: TranslateLoader,
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
-      },
-      isolate: true
+    }
 
     })
   ]
