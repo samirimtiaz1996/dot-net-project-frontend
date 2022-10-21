@@ -15,11 +15,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MainComponent } from './main/main.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/common/', '.json');
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/i18n/common/", suffix: ".json" },
+
+  ]);
 }
 @NgModule({
   declarations: [RootDefaultComponent, MainComponent],
@@ -32,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MaterialModule,
     FlexLayoutModule,
     MaterialModule,
+    SharedUtilityModule,
     StoreModule.forRoot({}, {}),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
@@ -46,4 +51,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [],
   bootstrap: [RootDefaultComponent],
 })
-export class RootModule {}
+export class RootModule { }

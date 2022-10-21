@@ -7,6 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 @Component({
   selector: 'app-root-default',
   templateUrl: './root-default.component.html',
@@ -20,10 +21,18 @@ export class RootDefaultComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private translateService: TranslateService
+    private _translateService: TranslateService,
+    private _sharedDataService: SharedDataService
   ) {
+
     router.initialNavigation();
-    router.events.subscribe((event) => {
+    this.setTranslationConfig();
+    this.onRouteChangeEvent();
+
+  }
+
+  onRouteChangeEvent() {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentApp = this.activatedRoute.root.firstChild?.snapshot;
         this.hideToolBar =
@@ -46,7 +55,17 @@ export class RootDefaultComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+  }
+
+  setTranslationConfig() {
+    this._translateService.setDefaultLang('en');
+    this._sharedDataService.getCurrentLang().subscribe((lang) => {
+      this._translateService.use(lang);
+    });
+  }
 
   setSideNavigationForApp() {
     this.navigations = [];

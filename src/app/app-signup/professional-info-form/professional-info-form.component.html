@@ -56,7 +56,7 @@
             <ng-container formArrayName="Documents">
                 <ng-container *ngFor="let document  of Documents.controls;let i=index">
                     <div class="w-100-p" [formGroup]="findDocumentFormGroupAt(i)">
-                        <div class="page-header-4" ngClass.xs="mb-10">Document {{i+1}} : </div>
+                        <div class="page-header-4 mb-10" ngClass.xs="mb-10">Document {{i+1}} : </div>
                         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
                             fxLayoutGap="16px">
 
@@ -78,20 +78,27 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <mat-form-field appearance="outline" class="w-100-p" style="margin-top: -10px;">
-                                    <input style="display: none" matInput formControlName="Attachment" required />
-                                    <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
-                                        <span
-                                            *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
-                                            field is
-                                            required</span>
-                                    </mat-error>
-                                    <app-file-uploader (onSuccessfulFileUpload)="onDocumentUpload(i)"
-                                        (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
-                                        [dataContext]="documentUploadDataContext">
-                                    </app-file-uploader>
-                                </mat-form-field>
+
+                                <div class="file-uploader-form-field w-100-p">
+                                    <mat-form-field appearance="outline" class="w-100-p">
+                                        <input style="display: none" matInput formControlName="Attachment" required />
+                                        <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
+                                            <span
+                                                *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
+                                                field is
+                                                required</span>
+                                        </mat-error>
+                                        <app-file-uploader style="margin-top: -20px;"
+                                            (onSuccessfulFileUpload)="onDocumentUpload(i)"
+                                            (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
+                                            [dataContext]="documentUploadDataContext">
+                                        </app-file-uploader>
+
+                                    </mat-form-field>
+
+                                </div>
                             </div>
+
 
                         </div>
                     </div>

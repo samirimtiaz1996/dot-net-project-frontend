@@ -1,7 +1,5 @@
 import {
-	AfterViewChecked,
 	AfterViewInit,
-	CompilerOptions,
 	Component,
 	OnInit,
 	ViewChild,
@@ -9,6 +7,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
+import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
 import { ProfessionalInfoFormComponent } from '../professional-info-form/professional-info-form.component';
 
@@ -22,20 +21,20 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 	generalInfoFormComponent!: GeneralInfoFormComponent;
 	@ViewChild('professionalInfoForm')
 	professionalInfoFormComponent!: ProfessionalInfoFormComponent;
+	@ViewChild('bankInfoForm')
+	bankInfoFormComponent!: BankInfoFormComponent;
 	formGroupsLoaded = false;
 	generalInfoFormGroup: FormGroup = new FormGroup({});
 	professionalInfoFormGroup: FormGroup = new FormGroup({});
+	bankInfoFormGroup: FormGroup = new FormGroup({});
 
-	secondFormGroup = this._formBuilder.group({
-		secondCtrl: ['', Validators.required],
-	});
+
 	constructor(
-		private _formBuilder: FormBuilder,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService
 	) {
 		// this._translateService.addLangs(['en', 'be']);
-		this._translateService.setDefaultLang('en');
+		//this._translateService.setDefaultLang('en');
 		this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
 		});
@@ -52,5 +51,7 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 	loadAllStepControls() {
 		this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;
 		this.professionalInfoFormGroup = this.professionalInfoFormComponent.professionalInfoForm;
+		this.bankInfoFormGroup = this.bankInfoFormComponent.bankInfoForm;
+
 	}
 }

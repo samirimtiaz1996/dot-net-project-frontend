@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 
 @Component({
   selector: 'app-login-default',
@@ -7,10 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-default.component.scss'],
 })
 export class LoginDefaultComponent implements OnInit {
-  constructor(private _router: Router) { }
-  ngOnChanges() {
-    debugger;
+
+  currentSelectedLanguageValue: 'be' | 'en' = 'en';
+  currentSelectedLanguageKey: string = "ENGLISH";
+  constructor(
+    private _router: Router,
+    private _translateService: TranslateService,
+    private _sharedDataService: SharedDataService
+  ) {
+
+    this._sharedDataService.getCurrentLang().subscribe((lang) => {
+      this.currentSelectedLanguageValue = lang;
+      this._translateService.use(lang);
+    });
   }
+
+  ngOnChanges() { }
 
   ngOnInit(): void { }
 
@@ -18,4 +33,16 @@ export class LoginDefaultComponent implements OnInit {
   navigateToSignUp() {
     this._router.navigateByUrl('/signup');
   }
+
+  onChangePortalLang(langValue: ("en" | "de")) {
+
+    this._sharedDataService.setCurrentLang(this.toggleLanguageValue(langValue));
+  }
+
+  toggleLanguageValue(langValue: ("en" | "de")) {
+
+    return langValue === 'en' ? 'be' : 'en'
+  }
+
+
 }
