@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node --max_old_space_size=5096 node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 8080 --disable-host-check",
-    "build": "ng build && mv dist/telemedicine-app _static",
+    "start": "ng serve",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
