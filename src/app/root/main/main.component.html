@@ -1,0 +1,59 @@
+<div class="main-container">
+    <mat-toolbar class="app-toolbar" style="position : sticky;" *ngIf="!hideToolBar" color="primary">
+        <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
+            aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Shifa Telemedicine</span>
+
+        <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end center" fxLayoutGap="32px">
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon style="margin-top: -2px;" fontIcon="language"></mat-icon>
+                    <span> {{selectedLanguageValue | portalLanguage | translate}}</span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <ng-container *ngFor="let lang of portalLanguages">
+                        <button (click)="setPortalLanguage(lang)" mat-menu-item> {{lang.Key | translate}}</button>
+                    </ng-container>
+
+                </mat-menu>
+                <!-- <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
+                    <mat-option *ngFor="let lang of portalLanguages" aria-selected="true" [value]="lang.Value">
+                        {{lang.Key | translate}}
+                    </mat-option>
+                </mat-select> -->
+            </div>
+
+        </div>
+    </mat-toolbar>
+
+
+
+    <mat-drawer-container fxFlexFill>
+        <mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
+            [opened]="isDrawerOpened">
+            <mat-list role="list">
+
+                <mat-list-item>Hello</mat-list-item>
+                <mat-list-item>Hello Hello</mat-list-item>
+                <mat-list-item>Hello Hello Hello Hello</mat-list-item>
+                <!-- <ng-container *ngFor ="let option of sideNavMenu" >
+                <mat-list-item role="listitem" routerLink={{option.path}} [routerLinkActive]="['is-active']"  >
+                    <span class="material-icons">{{option.icon}}</span>
+                    <span>&nbsp; &nbsp;</span>
+                    <span fxHide.lt-sm > {{option.name}}</span>
+                 
+                </mat-list-item>
+               
+               </ng-container> -->
+            </mat-list>
+
+
+        </mat-drawer>
+        <mat-drawer-content>
+            <ng-content></ng-content>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+</div>
