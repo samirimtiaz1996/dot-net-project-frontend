@@ -13,7 +13,7 @@ import { SharedDataService } from '../../shared/services/shared-data-services/sh
   templateUrl: './root-default.component.html',
   styleUrls: ['./root-default.component.scss'],
 })
-export class RootDefaultComponent implements OnInit {
+export class RootDefaultComponent {
   navigations = [];
   loading = true;
   hideToolBar = true;
@@ -55,13 +55,9 @@ export class RootDefaultComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-
-  }
 
   setTranslationConfig() {
-    this._translateService.setDefaultLang('en');
+    //this._translateService.setDefaultLang('en');
     this._sharedDataService.getCurrentLang().subscribe((lang) => {
       this._translateService.use(lang);
     });

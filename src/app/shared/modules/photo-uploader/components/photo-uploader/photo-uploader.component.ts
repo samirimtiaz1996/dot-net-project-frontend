@@ -5,18 +5,17 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   templateUrl: './photo-uploader.component.html',
   styleUrls: ['./photo-uploader.component.scss']
 })
-export class PhotoUploaderComponent implements OnInit {
+export class PhotoUploaderComponent {
 
   selectedFile!: File;
   preview!: any;
-  @Output() onSuccessfulFileUpload = new EventEmitter();
+  @Output() successfulFileUpload = new EventEmitter();
   @Output() actionInProgressEmitter = new EventEmitter();
   @Output() controlTouched = new EventEmitter<boolean>();
-  @Output() onFileDelete = new EventEmitter();
+  @Output() fileDelete = new EventEmitter();
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
   onFileUpload() {
 
@@ -36,7 +35,7 @@ export class PhotoUploaderComponent implements OnInit {
     reader.onload = (e: any) => {
       console.log(e.target.result);
       this.preview = e.target.result;
-      this.onSuccessfulFileUpload.emit(this.preview);
+      this.successfulFileUpload.emit(this.preview);
     };
 
     reader.readAsDataURL(this.selectedFile);

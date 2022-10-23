@@ -6,16 +6,16 @@ import { IFileUploadConfig, IFileUploadDataContext } from '../../interfaces/file
 	templateUrl: './file-uploader.component.html',
 	styleUrls: ['./file-uploader.component.scss']
 })
-export class FileUploaderComponent implements OnInit {
+export class FileUploaderComponent {
 
-	@Input("dataContext")
+	@Input()
 	dataContext!: IFileUploadDataContext;
-	@Input("config")
+	@Input()
 	config!: IFileUploadConfig;
-	@Output() onSuccessfulFileUpload = new EventEmitter();
+	@Output() successfulFileUpload = new EventEmitter();
 	@Output() actionInProgressEmitter = new EventEmitter();
 	@Output() controlTouched = new EventEmitter<boolean>();
-	@Output() onFileDelete = new EventEmitter();
+	@Output() fileDelete = new EventEmitter();
 	@Output() emitErrorMessages = new EventEmitter<string[]>();
 
 	selectedFile!: File | null;
@@ -27,8 +27,7 @@ export class FileUploaderComponent implements OnInit {
 	errorMessages!: string[];
 	constructor() { }
 
-	ngOnInit(): void {
-	}
+
 
 	clearAllErrorMessage() {
 		this.clearUploadErrorMessage();
@@ -100,7 +99,7 @@ export class FileUploaderComponent implements OnInit {
 			this.fileUploading = false;
 			this.actionInProgressEmitter.emit(this.fileUploading);
 			this.uploadedFile = this.selectedFile;
-			this.onSuccessfulFileUpload.emit(this.uploadedFile)
+			this.successfulFileUpload.emit(this.uploadedFile)
 		}, 3000)
 
 	}
@@ -114,7 +113,7 @@ export class FileUploaderComponent implements OnInit {
 			this.uploadedFile = this.selectedFile;
 			this.fileDeleting = false;
 			this.actionInProgressEmitter.emit(this.fileDeleting);
-			this.onFileDelete.emit(true);
+			this.fileDelete.emit(true);
 		}, 3000)
 
 	}

@@ -1,0 +1,74 @@
+@import "../../../../styles/themes/custom-palette.scss";
+@import "../../../../styles/utils/variables";
+@import "../../../../styles/shared/page-header.scss";
+@import "../../../../styles/utils/spacing";
+@import "../../../../styles/utils/singletone";
+
+.professional-info-form-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    //padding: 10px 40px;
+    background-color: white !important;
+
+    .form-field {
+        background-color: white;
+    }
+
+    .professional-info-form {
+        .form-field-pairs {
+            width: 100%;
+        }
+
+        .error-message {
+            color: map-get($mat-bs-error, "main") !important;
+            font-size: 12px;
+        }
+
+
+
+    }
+
+
+    .add-more-doc-btn-valid {
+        background-color: map-get($mat-bs-primary, 500);
+        color: white;
+    }
+
+    .add-more-doc-btn-invalid {
+        background-color: map-get($mat-bs-primary, 500);
+        color: $light-disabled-text;
+    }
+}
+
+:host ::ng-deep {
+
+    .file-uploader-form-field {
+        .mat-form-field-flex {
+            height: 55.56px;
+        }
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-prefix {
+        top: 0em !important;
+    }
+
+    .professional-info-form .base-file-uploader {
+        margin-top: -22px;
+
+        .file-upload {
+            margin-top: 8px;
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+}

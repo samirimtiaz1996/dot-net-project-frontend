@@ -1,0 +1,31 @@
+@import "../../../../styles/themes/custom-palette.scss";
+@import "../../../../styles/utils/variables";
+@import "../../../../styles/shared/page-header.scss";
+@import "../../../../styles/utils/spacing";
+@import "../../../../styles/utils/singletone";
+
+.signup-page-container {
+	padding: 64px 32px;
+	margin-bottom: 64px;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: map-get($mat-bs-accent, 50) !important;
+
+	.sign-up-box {
+		box-sizing: border-box;
+		padding: 16px 0px;
+		border-radius: 4px;
+		max-width: 100%;
+		background-color: $custom-white-color;
+		font-family: $custom-font-family;
+		color: $dark-primary-text;
+
+		.stepper-container {
+			width: 100%;
+		}
+	}
+}
+
+:host {
+	//height: 100%;
+}
